@@ -6,13 +6,9 @@
 
 ## Project Overview
 
-This project focuses on designing, deploying, securing, and monitoring cloud infrastructure using **Microsoft Azure**.
+This hands-on project builds a segmented Azure environment for a public Linux web server and a private Linux workload. It demonstrates Azure administration skills through documented configuration, security decisions, connectivity tests, and cost management while preparing for the **Microsoft Azure Administrator (AZ-104)** certification.
 
-The main objective is to gain hands-on experience with Azure administration services while preparing for the **Microsoft Azure Administrator (AZ-104)** certification.
-
-The infrastructure will include virtual networks, Linux virtual machines, network security groups, storage services, monitoring, and resource governance.
-
-The project is being developed using an **Azure for Students** subscription, with an emphasis on security best practices and cost optimization.
+The lab uses **Azure for Students**. The current evidence covers subscription review, resource group creation, resource tags, and budget configuration. Networking, virtual machines, and monitoring are the next implementation stages.
 
 ## Project Objectives
 
@@ -27,7 +23,20 @@ The project is being developed using an **Azure for Students** subscription, wit
 
 ## Planned Architecture
 
-The infrastructure will use the following network configuration:
+![Planned Azure architecture showing a public Nginx web VM, a private Linux VM, separate subnets and NSGs, and supporting governance and monitoring services](screenshots/Cloud_Architecture%20_Diagram.png)
+
+*Target architecture for the lab. The diagram includes planned resources and optional extensions; implementation progress is tracked below. IP addresses shown in the diagram are illustrative.*
+
+### Traffic Flow and Security Design
+
+1. **Public web access:** Internet users reach the public IP associated with the Linux web VM running Nginx. The web subnet NSG will allow HTTP on port 80 for the demonstration and restrict SSH on port 22 to the administrator's public IP (`/32`).
+2. **Network segmentation:** `vnet-az104` separates the web workload (`10.0.1.0/24`) from the private workload (`10.0.2.0/24`). Each subnet will have its own NSG to control inbound traffic.
+3. **Private workload access:** The internal Linux VM will have no public IP. The lab will test an explicit SSH exception from the web subnet and a deny rule for other traffic from that subnet, demonstrating both permitted and blocked connections.
+4. **Operations and governance:** Azure Monitor is planned for metrics and alerts. Resource organization, access management, and spending visibility are addressed through the resource group, Azure RBAC, and Cost Management.
+
+The diagram labels the internal tier as **App/DB**; the core exercise uses a temporary private Linux VM for connectivity tests. Storage-based log export and Key Vault are optional extensions shown in the diagram.
+
+### Core Configuration
 
 | Resource | Configuration |
 |---|---|
@@ -39,9 +48,7 @@ The infrastructure will use the following network configuration:
 | Operating System | Ubuntu Server 24.04 LTS |
 | Cloud Provider | Microsoft Azure |
 
-The architecture is designed to separate public-facing services from internal resources, providing better network isolation and security.
-
-*Architecture diagram will be included as the infrastructure is implemented.*
+The planned security tests will verify public HTTP access, restricted administrative access, and the NSG rules between the two subnets.
 
 ## Project Roadmap
 
@@ -60,54 +67,19 @@ The architecture is designed to separate public-facing services from internal re
 
 Establish the foundation of the Azure infrastructure by organizing cloud resources, understanding access control, and implementing basic cost management practices.
 
-### Activities
+### Implementation Progress
 
-**1. Azure Subscription**
+| Activity | Result | Evidence |
+|---|---|---|
+| Subscription review | Confirmed an active Azure for Students subscription and the current user's Owner role | [Subscription overview](screenshots/subscription.png) |
+| Resource group | Created `rg-az104-lab` as the management scope for the project | [Resource group and tags](screenshots/01-resource-group-tags.png) |
+| Resource tagging | Applied `project=az104-lab`, `environment=lab`, and `owner=student` | [Saved tags](screenshots/01-resource-group-tags.png) |
+| Budget configuration | Captured `budget-az104-lab` with a monthly amount of USD 10 | [Budget configuration](screenshots/02-budget-configuration.png) |
+| Alert configuration | Captured actual-cost thresholds at 50%, 80%, and 100% (USD 5, 8, and 10) | [Alert configuration](screenshots/03-budget-alerts.png) |
 
-- Reviewed the Azure for Students subscription.
-- Identified subscription limitations and available credits.
-- Explored the Azure Portal and resource management features.
+The budget screenshots show configuration settings; notification delivery has not yet been documented. The budget supports spending awareness and does not enforce a spending cap.
 
-**2. Resource Group**
-
-Planned resource group: `rg-az104-lab`
-
-Purpose:
-
-- Organize related Azure resources.
-- Simplify resource administration.
-- Apply consistent resource governance.
-- Facilitate cleanup after testing.
-
-**3. Resource Tagging**
-
-Defined the following tags:
-
-| Tag | Value |
-|---|---|
-| Project | AZ104-Lab |
-| Environment | Development |
-| ManagedBy | AzurePortal |
-
-Tags help organize resources and support cost analysis.
-
-**4. Identity and Access Management**
-
-Reviewed the fundamentals of:
-
-- Microsoft Entra ID
-- Azure Role-Based Access Control (RBAC)
-- Azure resource scopes
-- Principle of least privilege
-
-**5. Cost Management**
-
-Planned cost controls to monitor Azure credit consumption:
-
-- Review Azure Cost Management.
-- Configure budget alerts.
-- Monitor resource consumption.
-- Avoid unnecessary running virtual machines.
+The current user's Owner role is recorded as part of the subscription review. Custom RBAC assignments and access tests have not yet been documented.
 
 ### Technical Decisions
 
@@ -116,24 +88,16 @@ Planned cost controls to monitor Azure credit consumption:
 | Single Resource Group | Simplifies resource organization and cleanup |
 | Resource Tags | Improves resource tracking and cost visibility |
 | Azure RBAC | Supports controlled access to resources |
-| Budget Alerts | Helps prevent unexpected credit consumption |
+| Budget Alerts | Provides spending thresholds for reviewing credit consumption |
 | Small VM Sizes | Reduces infrastructure costs during testing |
 
-### Evidence
+### Detailed Documentation
 
-Screenshots will be added after completing the corresponding activities.
-
-Suggested evidence:
-
-- Azure subscription overview
-- Resource group configuration
-- Resource tags
-- RBAC access control
-- Cost Management budget
+[Week 1: Resource Governance and Initial Setup](docs/week-01-governance.md) explains the subscription review, resource group, and tags with embedded screenshots. Budget and alert documentation will be added in the next update.
 
 ---
 
-##  Technologies
+## Technologies
 
 - Microsoft Azure
 - Azure Resource Manager
@@ -145,7 +109,7 @@ Suggested evidence:
 - Azure Monitor (planned)
 - Git & GitHub
 
-##  Learning Outcomes
+## Learning Outcomes
 
 This project is intended to strengthen practical knowledge of Azure administration, including:
 
