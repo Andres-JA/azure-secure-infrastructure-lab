@@ -8,7 +8,7 @@
 
 This hands-on project builds a segmented Azure environment for a public Linux web server and a private Linux workload. It demonstrates Azure administration skills through documented configuration, security decisions, connectivity tests, and cost management while preparing for the **Microsoft Azure Administrator (AZ-104)** certification.
 
-The lab uses **Azure for Students**. The current evidence covers subscription review, resource group creation, resource tags, and budget configuration. Networking, virtual machines, and monitoring are the next implementation stages.
+The lab uses **Azure for Students**. **Week 1 is complete:** subscription review, resource group creation, tagging, and budget and alert configuration are documented with screenshots. The next phase focuses on virtual networking and security.
 
 ## Project Objectives
 
@@ -54,7 +54,7 @@ The planned security tests will verify public HTTP access, restricted administra
 
 | Week | Focus Area | Status |
 |---|---|---|
-| Week 1 | Resource Governance & Azure Setup | In Progress |
+| Week 1 | Resource Governance & Azure Setup | Completed |
 | Week 2 | Virtual Networking & Security | Planned |
 | Week 3 | Virtual Machines & Connectivity | Planned |
 | Week 4 | Monitoring, Cost Management & Documentation | Planned |
@@ -63,11 +63,13 @@ The planned security tests will verify public HTTP access, restricted administra
 
 ## Week 1 — Azure Resource Governance & Initial Setup
 
+**Status: Completed.** Configuration details, evidence, and skills demonstrated are recorded in the [Week 1 documentation](docs/week-01-governance.md).
+
 ### Objective
 
 Establish the foundation of the Azure infrastructure by organizing cloud resources, understanding access control, and implementing basic cost management practices.
 
-### Implementation Progress
+### Completed Activities
 
 | Activity | Result | Evidence |
 |---|---|---|
@@ -93,7 +95,7 @@ The current user's Owner role is recorded as part of the subscription review. Cu
 
 ### Detailed Documentation
 
-[Week 1: Resource Governance and Initial Setup](docs/week-01-governance.md) explains the subscription review, resource group, and tags with embedded screenshots. Budget and alert documentation will be added in the next update.
+[Week 1: Resource Governance and Initial Setup](docs/week-01-governance.md) covers the subscription review, resource group, tags, USD 10 monthly budget, and alert thresholds, with screenshots and a summary of the skills demonstrated.
 
 ---
 
