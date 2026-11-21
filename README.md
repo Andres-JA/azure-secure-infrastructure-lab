@@ -23,7 +23,7 @@ The lab uses **Azure for Students**. The current evidence covers subscription re
 
 ## Planned Architecture
 
-![Planned Azure architecture showing a public Nginx web VM, a private Linux VM, separate subnets and NSGs, and supporting governance and monitoring services](screenshots/Cloud_Architecture%20_Diagram.png)
+![Planned Azure architecture showing a public Nginx web VM, a private Linux VM, separate subnets and NSGs, and supporting governance and monitoring services](screenshots/architecture-diagram.png)
 
 *Target architecture for the lab. The diagram includes planned resources and optional extensions; implementation progress is tracked below. IP addresses shown in the diagram are illustrative.*
 
@@ -71,11 +71,11 @@ Establish the foundation of the Azure infrastructure by organizing cloud resourc
 
 | Activity | Result | Evidence |
 |---|---|---|
-| Subscription review | Confirmed an active Azure for Students subscription and the current user's Owner role | [Subscription overview](screenshots/subscription.png) |
-| Resource group | Created `rg-az104-lab` as the management scope for the project | [Resource group and tags](screenshots/01-resource-group-tags.png) |
-| Resource tagging | Applied `project=az104-lab`, `environment=lab`, and `owner=student` | [Saved tags](screenshots/01-resource-group-tags.png) |
-| Budget configuration | Captured `budget-az104-lab` with a monthly amount of USD 10 | [Budget configuration](screenshots/02-budget-configuration.png) |
-| Alert configuration | Captured actual-cost thresholds at 50%, 80%, and 100% (USD 5, 8, and 10) | [Alert configuration](screenshots/03-budget-alerts.png) |
+| Subscription review | Confirmed an active Azure for Students subscription and the current user's Owner role | [Subscription overview](screenshots/1.1-subscription.png) |
+| Resource group | Created `rg-az104-lab` as the management scope for the project | [Resource group and tags](screenshots/1.3.1-resource-group-tags.png) |
+| Resource tagging | Applied `project=az104-lab`, `environment=lab`, and `owner=student` | [Saved tags](screenshots/1.3.1-resource-group-tags.png) |
+| Budget configuration | Captured `budget-az104-lab` with a monthly amount of USD 10 | [Budget configuration](screenshots/1.3.2-budget-configuration.png) |
+| Alert configuration | Captured actual-cost thresholds at 50%, 80%, and 100% (USD 5, 8, and 10) | [Alert configuration](screenshots/1.3.3-budget-alerts.png) |
 
 The budget screenshots show configuration settings; notification delivery has not yet been documented. The budget supports spending awareness and does not enforce a spending cap.
 

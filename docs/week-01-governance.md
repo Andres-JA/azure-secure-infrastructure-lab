@@ -16,7 +16,7 @@ The Azure Portal subscription overview was reviewed to confirm that the lab uses
 
 This review establishes the subscription context for the lab. The screenshot records the subscription status and assigned role; regional availability, VM quotas, and remaining student credits still require separate checks before deploying compute resources.
 
-![Azure for Students subscription overview showing an active subscription and the Owner role](../screenshots/subscription.png)
+![Azure for Students subscription overview showing an active subscription and the Owner role](../screenshots/1.1-subscription.png)
 
 *Evidence: subscription overview in the Azure Portal, with the subscription ID hidden.*
 
@@ -44,6 +44,6 @@ The following tags were applied to `rg-az104-lab` to identify the project, envir
 
 These tags provide consistent metadata for organizing and reviewing the environment. The evidence below confirms the three saved tags on the resource group.
 
-![Tags saved on rg-az104-lab: environment lab, owner student, and project az104-lab](../screenshots/01-resource-group-tags.png)
+![Tags saved on rg-az104-lab: environment lab, owner student, and project az104-lab](../screenshots/1.3.1-resource-group-tags.png)
 
 *Evidence: resource group Tags page showing the configured names and values.*
