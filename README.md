@@ -8,7 +8,7 @@
 
 This hands-on project builds a segmented Azure environment for a public Linux web server and a private Linux workload. It demonstrates Azure administration skills through documented configuration, security decisions, connectivity tests, and cost management while preparing for the **Microsoft Azure Administrator (AZ-104)** certification.
 
-The lab uses **Azure for Students**. **Week 1 is complete:** subscription review, resource group creation, tagging, and budget and alert configuration are documented with screenshots. The next phase focuses on virtual networking and security.
+The lab uses **Azure for Students**. **Weeks 1 and 2 are documented:** governance, budget settings, the VNet, workload subnets, and initial NSG policies are covered with screenshots. Week 3 focuses on workloads and connectivity testing, including the private PostgreSQL tier.
 
 ## Project Objectives
 
@@ -29,8 +29,8 @@ The lab uses **Azure for Students**. **Week 1 is complete:** subscription review
 
 ### Traffic Flow and Security Design
 
-1. **Public web access:** Internet users reach the public IP associated with the Linux web VM running Nginx. The web subnet NSG will allow HTTP on port 80 for the demonstration and restrict SSH on port 22 to the administrator's public IP (`/32`).
-2. **Network segmentation:** `vnet-az104` separates the web workload (`10.0.1.0/24`) from the private workload (`10.0.2.0/24`). Each subnet will have its own NSG to control inbound traffic.
+1. **Public web access:** Internet users reach the public IP associated with the Linux web VM running Nginx. The configured web NSG rules allow HTTP on port 80 for the demonstration and restrict SSH on port 22 to the administrator's public IP (intended as `/32`).
+2. **Network segmentation:** `vnet-az104` separates the web workload (`10.0.1.0/24`) from the private workload (`10.0.2.0/24`). The web and private NSG rule sets are documented in Week 2; workload connectivity testing follows in Week 3.
 3. **Private workload access:** The internal Linux VM will have no public IP. The lab will test an explicit SSH exception from the web subnet and a deny rule for other traffic from that subnet, demonstrating both permitted and blocked connections.
 4. **Operations and governance:** Azure Monitor is planned for metrics and alerts. Resource organization, access management, and spending visibility are addressed through the resource group, Azure RBAC, and Cost Management.
 
@@ -55,7 +55,7 @@ The planned security tests will verify public HTTP access, restricted administra
 | Week | Focus Area | Status |
 |---|---|---|
 | Week 1 | Resource Governance & Azure Setup | Completed |
-| Week 2 | Virtual Networking & Security | Planned |
+| Week 2 | Virtual Networking & Security | Completed — design and initial policies documented |
 | Week 3 | Virtual Machines & Connectivity | Planned |
 | Week 4 | Monitoring, Cost Management & Documentation | Planned |
 
@@ -99,6 +99,19 @@ The current user's Owner role is recorded as part of the subscription review. Cu
 
 ---
 
+## Week 2 — Virtual Networking & Security
+
+**Status: Completed for network design and initial policy documentation.**
+
+- Documented `vnet-az104` with address space `10.0.0.0/16` and separate web and private workload subnets.
+- Recorded the web NSG rules for public HTTP and source-restricted SSH.
+- Explained the private SSH exception, explicit deny, and default NSG rules.
+- Identified evidence limits: the Week 2 screenshots show rule definitions, while subnet associations and traffic behavior require separate verification.
+
+[Week 2: Virtual Networking and Security](docs/week-02-networking.md) contains the configuration tables, screenshots, and security reasoning. Week 3 covers workload tests and the additional PostgreSQL access rule.
+
+---
+
 ## Technologies
 
 - Microsoft Azure
@@ -106,7 +119,7 @@ The current user's Owner role is recorded as part of the subscription review. Cu
 - Microsoft Entra ID
 - Azure RBAC
 - Azure Cost Management
-- Azure Virtual Network (planned)
+- Azure Virtual Network and Network Security Groups
 - Azure Virtual Machines (planned)
 - Azure Monitor (planned)
 - Git & GitHub
